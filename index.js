@@ -2,13 +2,21 @@ const fs = require('fs');
 const path = require('path');
 
 /**
+ * Get the package root directory
+ */
+function getPackageRoot() {
+  const packageJsonPath = require.resolve('@fntn/rego-recipes/package.json');
+  return path.dirname(packageJsonPath);
+}
+
+/**
  * Load a Rego recipe file by recipe number
  * @param {number|string} recipeNumber - The recipe number (e.g., 1, 2, 3)
  * @returns {string} The content of the recipe policy file
  */
 function loadRecipe(recipeNumber) {
   const recipePath = path.join(
-    __dirname,
+    getPackageRoot(),
     `recipe-${recipeNumber}`,
     'policy.rego'
   );
@@ -20,7 +28,8 @@ function loadRecipe(recipeNumber) {
  * @returns {Object} Object with recipe numbers as keys and recipe content as values
  */
 function loadAllRecipes() {
-  const files = fs.readdirSync(__dirname);
+  const packageRoot = getPackageRoot();
+  const files = fs.readdirSync(packageRoot);
   const recipeNumbers = files
     .filter((f) => f.startsWith('recipe-') && !f.includes('.'))
     .map((f) => parseInt(f.replace('recipe-', '')))
