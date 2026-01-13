@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Load a Rego policy file by recipe number
+ * Load a Rego recipe file by recipe number
  * @param {number|string} recipeNumber - The recipe number (e.g., 1, 2, 3)
- * @returns {string} The content of the policy.rego file
+ * @returns {string} The content of the recipe policy file
  */
-function loadPolicy(recipeNumber) {
+function loadRecipe(recipeNumber) {
   const recipePath = path.join(
     __dirname,
     `recipe-${recipeNumber}`,
@@ -16,38 +16,30 @@ function loadPolicy(recipeNumber) {
 }
 
 /**
- * Get all available recipe numbers
- * @returns {number[]} Array of recipe numbers
+ * Load all recipes as an object
+ * @returns {Object} Object with recipe numbers as keys and recipe content as values
  */
-function getAvailableRecipes() {
+function loadAllRecipes() {
   const files = fs.readdirSync(__dirname);
-  return files
+  const recipeNumbers = files
     .filter((f) => f.startsWith('recipe-') && !f.includes('.'))
     .map((f) => parseInt(f.replace('recipe-', '')))
     .sort((a, b) => a - b);
-}
 
-/**
- * Load all policies as an object
- * @returns {Object} Object with recipe numbers as keys and policy content as values
- */
-function loadAllPolicies() {
-  const recipes = getAvailableRecipes();
-  const policies = {};
+  const recipes = {};
 
-  recipes.forEach((num) => {
+  recipeNumbers.forEach((num) => {
     try {
-      policies[`recipe-${num}`] = loadPolicy(num);
+      recipes[`recipe-${num}`] = loadRecipe(num);
     } catch (err) {
       console.warn(`Could not load recipe-${num}:`, err.message);
     }
   });
 
-  return policies;
+  return recipes;
 }
 
 module.exports = {
-  loadPolicy,
-  getAvailableRecipes,
-  loadAllPolicies,
+  loadRecipe,
+  loadAllRecipes,
 };
