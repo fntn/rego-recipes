@@ -1,10 +1,8 @@
 {
   "name": "@fntn/rego-recipes",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "Cloudsmith EPM Rego samples",
-  "main": "index.js",
   "exports": {
-    ".": "./index.js",
     "./recipe-1": "./recipe-1/policy.rego",
     "./recipe-2": "./recipe-2/policy.rego",
     "./recipe-3": "./recipe-3/policy.rego",
@@ -31,7 +29,6 @@
   "files": [
     "recipe-*/**/*.rego",
     "huggingface-recipes/**/*",
-    "index.js",
     "README.md"
   ],
   "repository": {
