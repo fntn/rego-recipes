@@ -1,8 +1,10 @@
 {
   "name": "@fntn/rego-recipes",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Cloudsmith EPM Rego samples",
   "exports": {
+    ".": "./package.json",
+    "./package.json": "./package.json",
     "./recipe-1": "./recipe-1/policy.rego",
     "./recipe-2": "./recipe-2/policy.rego",
     "./recipe-3": "./recipe-3/policy.rego",
