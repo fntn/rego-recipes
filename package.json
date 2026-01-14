@@ -7,15 +7,11 @@
     "prepare": "husky"
   },
   "exports": {
+    "./huggingface-recipes/model_card": "./huggingface-recipes/model_card.rego",
+    "./huggingface-recipes/risky_files": "./huggingface-recipes/risky_files.rego",
+    "./huggingface-recipes/security_scan": "./huggingface-recipes/security_scan.rego",
+    "./huggingface-recipes/trusted_publishers": "./huggingface-recipes/trusted_publishers.rego",
     "./recipe-1/policy": "./recipe-1/policy.rego",
-    "./recipe-2/policy": "./recipe-2/policy.rego",
-    "./recipe-3/policy": "./recipe-3/policy.rego",
-    "./recipe-4/policy": "./recipe-4/policy.rego",
-    "./recipe-5/policy": "./recipe-5/policy.rego",
-    "./recipe-6/policy": "./recipe-6/policy.rego",
-    "./recipe-7/policy": "./recipe-7/policy.rego",
-    "./recipe-8/policy": "./recipe-8/policy.rego",
-    "./recipe-9/policy": "./recipe-9/policy.rego",
     "./recipe-10/policy": "./recipe-10/policy.rego",
     "./recipe-11/policy": "./recipe-11/policy.rego",
     "./recipe-12/policy": "./recipe-12/policy.rego",
@@ -26,8 +22,16 @@
     "./recipe-17/policy": "./recipe-17/policy.rego",
     "./recipe-18/policy": "./recipe-18/policy.rego",
     "./recipe-19/policy": "./recipe-19/policy.rego",
+    "./recipe-2/policy": "./recipe-2/policy.rego",
     "./recipe-20/policy": "./recipe-20/policy.rego",
-    "./recipe-21/policy": "./recipe-21/policy.rego"
+    "./recipe-21/policy": "./recipe-21/policy.rego",
+    "./recipe-3/policy": "./recipe-3/policy.rego",
+    "./recipe-4/policy": "./recipe-4/policy.rego",
+    "./recipe-5/policy": "./recipe-5/policy.rego",
+    "./recipe-6/policy": "./recipe-6/policy.rego",
+    "./recipe-7/policy": "./recipe-7/policy.rego",
+    "./recipe-8/policy": "./recipe-8/policy.rego",
+    "./recipe-9/policy": "./recipe-9/policy.rego"
   },
   "files": [
     "recipe-*/**/*.rego",
