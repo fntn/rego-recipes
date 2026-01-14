@@ -8,12 +8,12 @@
     "prepare": "husky"
   },
   "exports": {
-    "./manifest": "./recipes-manifest.json"
+    "./manifest": "./manifest.json"
   },
   "files": [
     "recipe-*/**/*.rego",
     "huggingface-recipes/**/*",
-    "recipes-manifest.json",
+    "manifest.json",
     "README.md"
   ],
   "repository": {

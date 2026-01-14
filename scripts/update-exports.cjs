@@ -34,7 +34,7 @@ function findRegoFiles(dir, baseDir = dir) {
 
 // Build exports object - only export the manifest
 const packageExports = {
-  './manifest': './recipes-manifest.json',
+  './manifest': './manifest.json',
 };
 
 // Update package.json
