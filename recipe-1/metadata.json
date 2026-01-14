@@ -1,0 +1,6 @@
+{
+  "name": "Block Vulnerable Packages",
+  "description": "Prevents packages with known CVE vulnerabilities from being published to your repository",
+  "tags": ["security", "cve", "vulnerability-scanning"],
+  "author": "Cloudsmith"
+}
