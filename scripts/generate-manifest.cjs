@@ -53,7 +53,6 @@ const recipes = regoFiles.map((file) => {
     name: fileName.replace(/_/g, ' ').replace(/-/g, ' '),
     path: `./${file.replace(/\\/g, '/')}`,
     export: exportKey,
-    category: folder.startsWith('recipe-') ? 'recipe' : folder,
     code: code,
   };
 });
