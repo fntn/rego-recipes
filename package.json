@@ -31,6 +31,8 @@
     "./recipe-20": "./recipe-20/policy.rego",
     "./recipe-21": "./recipe-21/policy.rego",
     "./recipe-22": "./recipe-22/policy.rego",
+    "./recipe-23": "./recipe-23/policy.rego",
+    "./recipe-24": "./recipe-24/policy.rego",
     "./huggingface-recipes": "./huggingface-recipes/README.md"
   },
   "files": [
