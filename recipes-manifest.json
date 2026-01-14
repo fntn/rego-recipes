@@ -1,0 +1,182 @@
+{
+  "version": "1.4.0",
+  "generatedAt": "2026-01-14T11:33:48.241Z",
+  "totalRecipes": 25,
+  "recipes": [
+    {
+      "id": "huggingface-recipes/model_card",
+      "name": "model card",
+      "path": "./huggingface-recipes/model_card.rego",
+      "export": "./huggingface-recipes/model_card",
+      "category": "huggingface-recipes"
+    },
+    {
+      "id": "huggingface-recipes/risky_files",
+      "name": "risky files",
+      "path": "./huggingface-recipes/risky_files.rego",
+      "export": "./huggingface-recipes/risky_files",
+      "category": "huggingface-recipes"
+    },
+    {
+      "id": "huggingface-recipes/security_scan",
+      "name": "security scan",
+      "path": "./huggingface-recipes/security_scan.rego",
+      "export": "./huggingface-recipes/security_scan",
+      "category": "huggingface-recipes"
+    },
+    {
+      "id": "huggingface-recipes/trusted_publishers",
+      "name": "trusted publishers",
+      "path": "./huggingface-recipes/trusted_publishers.rego",
+      "export": "./huggingface-recipes/trusted_publishers",
+      "category": "huggingface-recipes"
+    },
+    {
+      "id": "recipe-1/policy",
+      "name": "policy",
+      "path": "./recipe-1/policy.rego",
+      "export": "./recipe-1/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-10/policy",
+      "name": "policy",
+      "path": "./recipe-10/policy.rego",
+      "export": "./recipe-10/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-11/policy",
+      "name": "policy",
+      "path": "./recipe-11/policy.rego",
+      "export": "./recipe-11/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-12/policy",
+      "name": "policy",
+      "path": "./recipe-12/policy.rego",
+      "export": "./recipe-12/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-13/policy",
+      "name": "policy",
+      "path": "./recipe-13/policy.rego",
+      "export": "./recipe-13/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-14/policy",
+      "name": "policy",
+      "path": "./recipe-14/policy.rego",
+      "export": "./recipe-14/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-15/policy",
+      "name": "policy",
+      "path": "./recipe-15/policy.rego",
+      "export": "./recipe-15/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-16/policy",
+      "name": "policy",
+      "path": "./recipe-16/policy.rego",
+      "export": "./recipe-16/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-17/policy",
+      "name": "policy",
+      "path": "./recipe-17/policy.rego",
+      "export": "./recipe-17/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-18/policy",
+      "name": "policy",
+      "path": "./recipe-18/policy.rego",
+      "export": "./recipe-18/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-19/policy",
+      "name": "policy",
+      "path": "./recipe-19/policy.rego",
+      "export": "./recipe-19/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-2/policy",
+      "name": "policy",
+      "path": "./recipe-2/policy.rego",
+      "export": "./recipe-2/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-20/policy",
+      "name": "policy",
+      "path": "./recipe-20/policy.rego",
+      "export": "./recipe-20/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-21/policy",
+      "name": "policy",
+      "path": "./recipe-21/policy.rego",
+      "export": "./recipe-21/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-3/policy",
+      "name": "policy",
+      "path": "./recipe-3/policy.rego",
+      "export": "./recipe-3/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-4/policy",
+      "name": "policy",
+      "path": "./recipe-4/policy.rego",
+      "export": "./recipe-4/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-5/policy",
+      "name": "policy",
+      "path": "./recipe-5/policy.rego",
+      "export": "./recipe-5/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-6/policy",
+      "name": "policy",
+      "path": "./recipe-6/policy.rego",
+      "export": "./recipe-6/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-7/policy",
+      "name": "policy",
+      "path": "./recipe-7/policy.rego",
+      "export": "./recipe-7/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-8/policy",
+      "name": "policy",
+      "path": "./recipe-8/policy.rego",
+      "export": "./recipe-8/policy",
+      "category": "recipe"
+    },
+    {
+      "id": "recipe-9/policy",
+      "name": "policy",
+      "path": "./recipe-9/policy.rego",
+      "export": "./recipe-9/policy",
+      "category": "recipe"
+    }
+  ]
+}

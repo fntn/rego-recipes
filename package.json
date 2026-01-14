@@ -4,6 +4,7 @@
   "description": "Cloudsmith EPM Rego samples",
   "scripts": {
     "update-exports": "node scripts/update-exports.cjs",
+    "generate-manifest": "node scripts/generate-manifest.cjs",
     "prepare": "husky"
   },
   "exports": {
