@@ -1,18 +1,22 @@
 {
   "name": "@fntn/rego-recipes",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "Cloudsmith EPM Rego samples",
   "scripts": {
     "generate-manifest": "node scripts/generate-manifest.cjs",
     "prepare": "husky"
   },
   "exports": {
-    "./manifest": "./manifest.json"
+    "./manifest": {
+      "types": "./manifest.d.ts",
+      "default": "./manifest.json"
+    }
   },
   "files": [
     "recipe-*/**/*.rego",
     "huggingface-recipes/**/*",
     "manifest.json",
+    "manifest.d.ts",
     "README.md"
   ],
   "repository": {
