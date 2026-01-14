@@ -34,6 +34,29 @@ function findRegoFiles(dir, baseDir = dir) {
 
 const regoFiles = findRegoFiles(rootDir);
 
+// Sort files: recipe-N numerically first, then huggingface-recipes alphabetically
+const sortedRegoFiles = regoFiles.sort((a, b) => {
+  const aFolder = a.split(path.sep)[0];
+  const bFolder = b.split(path.sep)[0];
+
+  const aIsRecipe = aFolder.startsWith('recipe-');
+  const bIsRecipe = bFolder.startsWith('recipe-');
+
+  // Both are recipe-N: sort numerically by N
+  if (aIsRecipe && bIsRecipe) {
+    const aNum = parseInt(aFolder.split('-')[1]);
+    const bNum = parseInt(bFolder.split('-')[1]);
+    return aNum - bNum;
+  }
+
+  // Recipe comes before huggingface
+  if (aIsRecipe && !bIsRecipe) return -1;
+  if (!aIsRecipe && bIsRecipe) return 1;
+
+  // Both are huggingface: sort alphabetically
+  return a.localeCompare(b);
+});
+
 // Helper to load metadata
 function loadMetadata(file) {
   const parts = file.split(path.sep);
@@ -61,7 +84,7 @@ function loadMetadata(file) {
 }
 
 // Build manifest
-const recipes = regoFiles.map((file) => {
+const recipes = sortedRegoFiles.map((file) => {
   const parsedPath = path.parse(file);
   const id = file.replace('.rego', '').replace(/\\/g, '/');
   const exportKey = `./${id}`;
