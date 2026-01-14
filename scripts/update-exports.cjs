@@ -32,15 +32,10 @@ function findRegoFiles(dir, baseDir = dir) {
   return results;
 }
 
-// Build exports object
-const packageExports = {};
-const regoFiles = findRegoFiles(rootDir);
-
-regoFiles.forEach((file) => {
-  const exportKey = `./${file.replace('.rego', '')}`;
-  const exportPath = `./${file}`;
-  packageExports[exportKey] = exportPath;
-});
+// Build exports object - only export the manifest
+const packageExports = {
+  './manifest': './recipes-manifest.json',
+};
 
 // Update package.json
 packageJson.exports = packageExports;
@@ -48,4 +43,4 @@ packageJson.exports = packageExports;
 // Write back to package.json
 fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
 
-console.log(`✓ Updated ${regoFiles.length} .rego file exports`);
+console.log(`✓ Updated exports (manifest only)`);

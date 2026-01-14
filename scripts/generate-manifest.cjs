@@ -44,12 +44,17 @@ const recipes = regoFiles.map((file) => {
   const folder = parts[0];
   const fileName = parsedPath.name;
 
+  // Read the .rego file contents
+  const fullPath = path.join(rootDir, file);
+  const code = fs.readFileSync(fullPath, 'utf8');
+
   return {
     id: id,
     name: fileName.replace(/_/g, ' ').replace(/-/g, ' '),
     path: `./${file.replace(/\\/g, '/')}`,
     export: exportKey,
     category: folder.startsWith('recipe-') ? 'recipe' : folder,
+    code: code,
   };
 });
 
