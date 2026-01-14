@@ -21,23 +21,22 @@ const recipeDirs = entries
   });
 
 // Build exports object
-const packageExports = {
-  '.': './package.json',
-  './package.json': './package.json',
-};
+const packageExports = {};
 
-// Add recipe exports
+// Add recipe exports - find all .rego files in each recipe directory
+let totalExports = 0;
 recipeDirs.forEach((dir) => {
-  const policyPath = `./${dir}/policy.rego`;
-  if (fs.existsSync(path.join(rootDir, dir, 'policy.rego'))) {
-    packageExports[`./${dir}`] = policyPath;
-  }
-});
+  const dirPath = path.join(rootDir, dir);
+  const files = fs.readdirSync(dirPath);
+  const regoFiles = files.filter((file) => file.endsWith('.rego'));
 
-// Add huggingface-recipes if it exists
-if (fs.existsSync(path.join(rootDir, 'huggingface-recipes', 'README.md'))) {
-  packageExports['./huggingface-recipes'] = './huggingface-recipes/README.md';
-}
+  regoFiles.forEach((file) => {
+    const exportKey = `./${dir}/${file.replace('.rego', '')}`;
+    const exportPath = `./${dir}/${file}`;
+    packageExports[exportKey] = exportPath;
+    totalExports++;
+  });
+});
 
 // Update package.json
 packageJson.exports = packageExports;
@@ -45,4 +44,6 @@ packageJson.exports = packageExports;
 // Write back to package.json
 fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
 
-console.log(`✓ Updated exports for ${recipeDirs.length} recipes`);
+console.log(
+  `✓ Updated ${totalExports} exports from ${recipeDirs.length} recipe directories`
+);
