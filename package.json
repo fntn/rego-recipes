@@ -1,6 +1,6 @@
 {
   "name": "@fntn/rego-recipes",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Cloudsmith EPM Rego samples",
   "scripts": {
     "generate-manifest": "node scripts/generate-manifest.cjs",
