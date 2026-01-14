@@ -1,3 +1,2 @@
-npm run update-exports
 npm run generate-manifest
 git add package.json manifest.json
