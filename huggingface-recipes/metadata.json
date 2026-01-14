@@ -1,0 +1,26 @@
+{
+  "model_card": {
+    "name": "Model Card Validator",
+    "description": "Validates Hugging Face model card metadata and requirements",
+    "tags": [],
+    "author": "Cloudsmith"
+  },
+  "risky_files": {
+    "name": "Risky Files Detector",
+    "description": "Detects potentially risky files in Hugging Face model repositories",
+    "tags": [],
+    "author": "Cloudsmith"
+  },
+  "security_scan": {
+    "name": "Security Scanner",
+    "description": "Performs security scanning on Hugging Face model artifacts",
+    "tags": [],
+    "author": "Cloudsmith"
+  },
+  "trusted_publishers": {
+    "name": "Trusted Publishers",
+    "description": "Validates Hugging Face model publishers against a trusted list",
+    "tags": [],
+    "author": "Cloudsmith"
+  }
+}

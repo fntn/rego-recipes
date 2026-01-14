@@ -1,35 +1,47 @@
 {
-  "version": "1.7.0",
-  "generatedAt": "2026-01-14T13:52:19.664Z",
+  "version": "1.7.1",
+  "generatedAt": "2026-01-14T13:55:44.253Z",
   "totalRecipes": 25,
   "recipes": [
     {
       "id": "huggingface-recipes/model_card",
-      "name": "model card",
+      "name": "Model Card Validator",
       "path": "./huggingface-recipes/model_card.rego",
       "export": "./huggingface-recipes/model_card",
-      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\npkg := input.v0.package\n\nhf_pkg if \"huggingface\" == pkg.format\n\nmatch if {\n    hf_pkg\n    \"HuggingFaceTB/smollm-corpus\" in pkg.card.datasets\n} \n"
+      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\npkg := input.v0.package\n\nhf_pkg if \"huggingface\" == pkg.format\n\nmatch if {\n    hf_pkg\n    \"HuggingFaceTB/smollm-corpus\" in pkg.card.datasets\n} \n",
+      "description": "Validates Hugging Face model card metadata and requirements",
+      "tags": [],
+      "author": "Cloudsmith"
     },
     {
       "id": "huggingface-recipes/risky_files",
-      "name": "risky files",
+      "name": "Risky Files Detector",
       "path": "./huggingface-recipes/risky_files.rego",
       "export": "./huggingface-recipes/risky_files",
-      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\npkg := input.v0.package\n\nhf_pkg if \"huggingface\" == pkg.format\n\n# Upstream packages are fetched by a system user\nis_upstream_pkg if input.v0.package.uploader.slug == \"cloudsmith-o6v\"\n\n# Formats and their extensions\n# H5 (.h5, .hdf5)\n# Paddle (.pdparams)\n# PyTorch (.bin, .pt, .pth, .ckpt)\n# Pickle (.pkl, .dat)\n# Numpy (.npy)\n# JobLib (.joblib)\n# Dill (.dill)\n# SavedModel (.pb)\n# GGUF (.gguf)\n\nrisky_file_extensions := {\".h5\", \".hdf5\", \".pdparams\", \".keras\", \".bin\", \".pkl\", \".dat\", \".pt\", \".pth\", \".ckpt\", \".npy\", \".joblib\", \".dill\", \".pb\", \".gguf\", \".zip\",}\n\nmatch if {\n    hf_pkg\n    is_upstream_pkg\n    some file in pkg.files\n    file.file_extension in risky_file_extensions \n} "
+      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\npkg := input.v0.package\n\nhf_pkg if \"huggingface\" == pkg.format\n\n# Upstream packages are fetched by a system user\nis_upstream_pkg if input.v0.package.uploader.slug == \"cloudsmith-o6v\"\n\n# Formats and their extensions\n# H5 (.h5, .hdf5)\n# Paddle (.pdparams)\n# PyTorch (.bin, .pt, .pth, .ckpt)\n# Pickle (.pkl, .dat)\n# Numpy (.npy)\n# JobLib (.joblib)\n# Dill (.dill)\n# SavedModel (.pb)\n# GGUF (.gguf)\n\nrisky_file_extensions := {\".h5\", \".hdf5\", \".pdparams\", \".keras\", \".bin\", \".pkl\", \".dat\", \".pt\", \".pth\", \".ckpt\", \".npy\", \".joblib\", \".dill\", \".pb\", \".gguf\", \".zip\",}\n\nmatch if {\n    hf_pkg\n    is_upstream_pkg\n    some file in pkg.files\n    file.file_extension in risky_file_extensions \n} ",
+      "description": "Detects potentially risky files in Hugging Face model repositories",
+      "tags": [],
+      "author": "Cloudsmith"
     },
     {
       "id": "huggingface-recipes/security_scan",
-      "name": "security scan",
+      "name": "Security Scanner",
       "path": "./huggingface-recipes/security_scan.rego",
       "export": "./huggingface-recipes/security_scan",
-      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\n# Upstream packages are fetched by a system user\nis_upstream_pkg if input.v0.package.uploader.slug == \"cloudsmith-o6v\"\n\n# Ensure the security scans have been completed and none of the scans\n# find any problematic content.\n# Users an incremental rule to express OR.\nincomplete_or_unsafe if {\n    input.v0.model_security.availability != \"COMPLETE\"\n}\n\nincomplete_or_unsafe if {\n    input.v0.model_security.scan_summary != \"SAFE\"\n}\n\nmatch if {\n    \"huggingface\" == input.v0.package.format\n    is_upstream_pkg\n    incomplete_or_unsafe\n}\n"
+      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\n# Upstream packages are fetched by a system user\nis_upstream_pkg if input.v0.package.uploader.slug == \"cloudsmith-o6v\"\n\n# Ensure the security scans have been completed and none of the scans\n# find any problematic content.\n# Users an incremental rule to express OR.\nincomplete_or_unsafe if {\n    input.v0.model_security.availability != \"COMPLETE\"\n}\n\nincomplete_or_unsafe if {\n    input.v0.model_security.scan_summary != \"SAFE\"\n}\n\nmatch if {\n    \"huggingface\" == input.v0.package.format\n    is_upstream_pkg\n    incomplete_or_unsafe\n}\n",
+      "description": "Performs security scanning on Hugging Face model artifacts",
+      "tags": [],
+      "author": "Cloudsmith"
     },
     {
       "id": "huggingface-recipes/trusted_publishers",
-      "name": "trusted publishers",
+      "name": "Trusted Publishers",
       "path": "./huggingface-recipes/trusted_publishers.rego",
       "export": "./huggingface-recipes/trusted_publishers",
-      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\n# Upstream packages are fetched by a system user\nis_upstream_pkg if input.v0.package.uploader.slug == \"cloudsmith-o6v\"\n\nverified_publishers := {\"amazon\", \"apple\", \"facebook\", \"FacebookAI\", \"google\", \"Intel\", \"microsoft\", \"openai\"}\n\npublisher := split(input.v0.package.name, \"/\")[0]\n\nmatch if {\n    \"huggingface\" == input.v0.package.format\n    is_upstream_pkg\n    publisher in verified_publishers\n}\n"
+      "code": "package cloudsmith\n\nimport rego.v1\n\ndefault match := false\n\n# Upstream packages are fetched by a system user\nis_upstream_pkg if input.v0.package.uploader.slug == \"cloudsmith-o6v\"\n\nverified_publishers := {\"amazon\", \"apple\", \"facebook\", \"FacebookAI\", \"google\", \"Intel\", \"microsoft\", \"openai\"}\n\npublisher := split(input.v0.package.name, \"/\")[0]\n\nmatch if {\n    \"huggingface\" == input.v0.package.format\n    is_upstream_pkg\n    publisher in verified_publishers\n}\n",
+      "description": "Validates Hugging Face model publishers against a trusted list",
+      "tags": [],
+      "author": "Cloudsmith"
     },
     {
       "id": "recipe-1/policy",
