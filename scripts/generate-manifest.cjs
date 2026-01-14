@@ -34,6 +34,32 @@ function findRegoFiles(dir, baseDir = dir) {
 
 const regoFiles = findRegoFiles(rootDir);
 
+// Helper to load metadata
+function loadMetadata(file) {
+  const parts = file.split(path.sep);
+  const folder = parts[0];
+  const fileName = path.parse(file).name;
+
+  // For recipe-N directories, look for metadata.json in that directory
+  if (folder.startsWith('recipe-')) {
+    const metadataPath = path.join(rootDir, folder, 'metadata.json');
+    if (fs.existsSync(metadataPath)) {
+      return JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    }
+  }
+
+  // For huggingface-recipes, look for folder/metadata.json with keys per file
+  if (folder === 'huggingface-recipes') {
+    const metadataPath = path.join(rootDir, folder, 'metadata.json');
+    if (fs.existsSync(metadataPath)) {
+      const allMetadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+      return allMetadata[fileName] || {};
+    }
+  }
+
+  return {};
+}
+
 // Build manifest
 const recipes = regoFiles.map((file) => {
   const parsedPath = path.parse(file);
@@ -48,12 +74,16 @@ const recipes = regoFiles.map((file) => {
   const fullPath = path.join(rootDir, file);
   const code = fs.readFileSync(fullPath, 'utf8');
 
+  // Load metadata if available
+  const metadata = loadMetadata(file);
+
   return {
     id: id,
-    name: fileName.replace(/_/g, ' ').replace(/-/g, ' '),
+    name: metadata.name || fileName.replace(/_/g, ' ').replace(/-/g, ' '),
     path: `./${file.replace(/\\/g, '/')}`,
     export: exportKey,
     code: code,
+    ...metadata, // Spread any additional metadata fields
   };
 });
 

@@ -1,6 +1,6 @@
 {
   "version": "1.6.1",
-  "generatedAt": "2026-01-14T13:47:30.713Z",
+  "generatedAt": "2026-01-14T13:49:45.272Z",
   "totalRecipes": 25,
   "recipes": [
     {
@@ -33,10 +33,17 @@
     },
     {
       "id": "recipe-1/policy",
-      "name": "policy",
+      "name": "Block Vulnerable Packages",
       "path": "./recipe-1/policy.rego",
       "export": "./recipe-1/policy",
-      "code": "package cloudsmith\nimport rego.v1\ndefault match := false\n\nmatch if count(reason) > 0\n\nreason contains msg if {\n  pkg := input.v0[\"package\"]\n  not pkg.signed\n  msg := \"The package must be signed to be published to this repository.\"\n}\n"
+      "code": "package cloudsmith\nimport rego.v1\ndefault match := false\n\nmatch if count(reason) > 0\n\nreason contains msg if {\n  pkg := input.v0[\"package\"]\n  not pkg.signed\n  msg := \"The package must be signed to be published to this repository.\"\n}\n",
+      "description": "Prevents packages with known CVE vulnerabilities from being published to your repository",
+      "tags": [
+        "security",
+        "cve",
+        "vulnerability-scanning"
+      ],
+      "author": "Cloudsmith"
     },
     {
       "id": "recipe-10/policy",
