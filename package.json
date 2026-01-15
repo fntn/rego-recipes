@@ -4,7 +4,12 @@
   "description": "Cloudsmith EPM Rego samples",
   "scripts": {
     "generate-manifest": "node scripts/generate-manifest.cjs",
+    "test": "jest",
     "prepare": "husky"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/scripts/__tests__/**/*.test.js"]
   },
   "exports": {
     "./manifest": {
@@ -23,16 +28,12 @@
     "type": "git",
     "url": "https://github.com/fntn/rego-recipes.git"
   },
-  "keywords": [
-    "rego",
-    "policy",
-    "cloudsmith",
-    "epm",
-    "open-policy-agent"
-  ],
+  "keywords": ["rego", "policy", "cloudsmith", "epm", "open-policy-agent"],
   "author": "Cloudsmith",
   "license": "MIT",
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "mock-fs": "^5.5.0"
   }
 }
