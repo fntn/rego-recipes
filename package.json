@@ -5,11 +5,15 @@
   "scripts": {
     "generate-manifest": "node scripts/generate-manifest.cjs",
     "test": "jest",
+    "test:unit": "jest scripts/__tests__/generate-manifest.test.js",
+    "test:integration": "jest scripts/__tests__/generate-manifest.integration.test.js",
     "prepare": "husky"
   },
   "jest": {
     "testEnvironment": "node",
-    "testMatch": ["**/scripts/__tests__/**/*.test.js"]
+    "testMatch": [
+      "**/scripts/__tests__/**/*.test.js"
+    ]
   },
   "exports": {
     "./manifest": {
@@ -28,7 +32,13 @@
     "type": "git",
     "url": "https://github.com/fntn/rego-recipes.git"
   },
-  "keywords": ["rego", "policy", "cloudsmith", "epm", "open-policy-agent"],
+  "keywords": [
+    "rego",
+    "policy",
+    "cloudsmith",
+    "epm",
+    "open-policy-agent"
+  ],
   "author": "Cloudsmith",
   "license": "MIT",
   "devDependencies": {
